@@ -4,6 +4,7 @@
  */
 package vista.herramientas;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
 public class JInternalFrameContador extends javax.swing.JInternalFrame {
@@ -14,6 +15,8 @@ public class JInternalFrameContador extends javax.swing.JInternalFrame {
         
         this.setSize(new Dimension(400, 350));
         this.setTitle("Contador");
+        this.getContentPane().setBackground(Color.BLACK);
+
     }
 
     /**
@@ -33,10 +36,10 @@ public class JInternalFrameContador extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setResizable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         contador.setFont(new java.awt.Font("Segoe UI", 0, 80)); // NOI18N
+        contador.setForeground(new java.awt.Color(255, 255, 255));
         contador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contador.setText("0");
         contador.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -67,7 +70,7 @@ public class JInternalFrameContador extends javax.swing.JInternalFrame {
                 btnMenos2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMenos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
+        getContentPane().add(btnMenos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, -1));
 
         btnMas2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         btnMas2.setText("+2");
@@ -76,7 +79,7 @@ public class JInternalFrameContador extends javax.swing.JInternalFrame {
                 btnMas2ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
+        getContentPane().add(btnMas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
