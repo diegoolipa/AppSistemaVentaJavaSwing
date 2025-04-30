@@ -85,7 +85,7 @@ public class JInternalFrameContador extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDisminuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisminuirActionPerformed
-        //Disminuir
+        //Disminuir //Diego Lipa
         int resultado = numeroContador=numeroContador-1;
         contador.setText(Integer.toString(resultado));
     }//GEN-LAST:event_btnDisminuirActionPerformed
