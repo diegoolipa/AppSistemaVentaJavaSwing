@@ -2,9 +2,12 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.JDesktopPane;
+import vista.herramientas.JInternalFrameContador;
 
 public class JFrameMenu extends javax.swing.JFrame {
 
+    public static JDesktopPane jDesktopPane_Menu;
     public JFrameMenu() {
         initComponents();
         
@@ -13,6 +16,14 @@ public class JFrameMenu extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Sistema de Venta");
         this.getContentPane().setBackground(Color.white);
+        
+        this.setLayout(null);
+        jDesktopPane_Menu = new JDesktopPane();
+        
+        int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+        int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+        this.jDesktopPane_Menu.setBounds(0, 0, ancho, (alto-110));
+        this.add(jDesktopPane_Menu);
     }
 
     /**
@@ -27,7 +38,6 @@ public class JFrameMenu extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -39,7 +49,7 @@ public class JFrameMenu extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        MenuContador = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jMenu10 = new javax.swing.JMenu();
@@ -54,21 +64,16 @@ public class JFrameMenu extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setText("Diego Lipa");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 250, 100));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 250, 100));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icons8-cliente-48.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 50, 60));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 50, 60));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("1200 x 700");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 630));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/usuario.png"))); // NOI18N
         jMenu1.setText("Perfil");
@@ -113,15 +118,15 @@ public class JFrameMenu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem1);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icons8-contador-30.png"))); // NOI18N
-        jMenuItem2.setText("Contador");
-        jMenuItem2.setPreferredSize(new java.awt.Dimension(150, 30));
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        MenuContador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icons8-contador-30.png"))); // NOI18N
+        MenuContador.setText("Contador");
+        MenuContador.setPreferredSize(new java.awt.Dimension(150, 30));
+        MenuContador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                MenuContadorActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem2);
+        jMenu6.add(MenuContador);
 
         jMenuBar1.add(jMenu6);
 
@@ -150,9 +155,13 @@ public class JFrameMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void MenuContadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuContadorActionPerformed
+        
+       //Instanciar
+        JInternalFrameContador contador = new JInternalFrameContador();
+        jDesktopPane_Menu.add(contador);
+        contador.setVisible(true);
+    }//GEN-LAST:event_MenuContadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,6 +199,7 @@ public class JFrameMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuContador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -207,7 +217,5 @@ public class JFrameMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
