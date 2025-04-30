@@ -6,13 +6,9 @@ package vista.herramientas;
 
 import java.awt.Dimension;
 
-/**
- *
- * @author Soporte
- */
 public class JInternalFrameContador extends javax.swing.JInternalFrame {
 
-    int numeroContador = 0;
+    int numeroContador;
     public JInternalFrameContador() {
         initComponents();
         
@@ -32,6 +28,8 @@ public class JInternalFrameContador extends javax.swing.JInternalFrame {
         contador = new javax.swing.JLabel();
         btnDisminuir = new javax.swing.JButton();
         btnAdicionar = new javax.swing.JButton();
+        btnMenos2 = new javax.swing.JButton();
+        btnMas2 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -51,7 +49,7 @@ public class JInternalFrameContador extends javax.swing.JInternalFrame {
                 btnDisminuirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDisminuir, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        getContentPane().add(btnDisminuir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         btnAdicionar.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         btnAdicionar.setText("+");
@@ -60,28 +58,56 @@ public class JInternalFrameContador extends javax.swing.JInternalFrame {
                 btnAdicionarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAdicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
+        getContentPane().add(btnAdicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+
+        btnMenos2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        btnMenos2.setText("-2");
+        btnMenos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenos2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMenos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
+
+        btnMas2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        btnMas2.setText("+2");
+        btnMas2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMas2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDisminuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisminuirActionPerformed
         //Disminuir
-        int resultado = numeroContador--;
-        System.out.println(resultado);
+        int resultado = numeroContador=numeroContador-1;
         contador.setText(Integer.toString(resultado));
     }//GEN-LAST:event_btnDisminuirActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        int resultado = numeroContador++;
-        System.out.println(resultado);
+        int resultado = numeroContador=numeroContador+1;
         contador.setText(Integer.toString(resultado));
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnMas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMas2ActionPerformed
+        int resultado = numeroContador=numeroContador+2;
+        contador.setText(Integer.toString(resultado));
+    }//GEN-LAST:event_btnMas2ActionPerformed
+
+    private void btnMenos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenos2ActionPerformed
+        int resultado = numeroContador=numeroContador-2;
+        contador.setText(Integer.toString(resultado));
+    }//GEN-LAST:event_btnMenos2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnDisminuir;
+    private javax.swing.JButton btnMas2;
+    private javax.swing.JButton btnMenos2;
     private javax.swing.JLabel contador;
     // End of variables declaration//GEN-END:variables
 }
