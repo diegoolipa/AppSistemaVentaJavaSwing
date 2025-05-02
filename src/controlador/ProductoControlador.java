@@ -1,7 +1,7 @@
 
 package controlador;
 
-import db.Conexion;
+import db.ConexionOracle;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -12,7 +12,7 @@ public class ProductoControlador {
     //Metodos par realizar el CRUD
     
     public ProductoControlador() throws SQLException{
-        this.connection = Conexion.getConnection();
+        this.connection = ConexionOracle.getConnection();
     }
     
     public void CrearProducto(){

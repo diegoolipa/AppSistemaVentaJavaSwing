@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexion {
+public class ConexionOracle {
    // Declaración de variables estáticas para la conexión
     private static Connection conn = null;
     private static String login = "MATRICULA"; // Usuario de la base de datos
@@ -54,7 +54,7 @@ public class Conexion {
     // Método main para probar la conexión (opcional)
     public static void main(String[] args) throws SQLException {
         // Crear una instancia de la clase Conexion
-        Conexion c = new Conexion();
+        ConexionOracle c = new ConexionOracle();
         // Obtener la conexión a la base de datos
         c.getConnection();
     }
