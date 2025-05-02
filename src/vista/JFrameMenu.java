@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JDesktopPane;
 import vista.herramientas.JInternalFrameContador;
+import vista.producto.JInternalFramePoducto;
 
 public class JFrameMenu extends javax.swing.JFrame {
 
@@ -46,6 +47,7 @@ public class JFrameMenu extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        MenuProductos = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -95,6 +97,16 @@ public class JFrameMenu extends javax.swing.JFrame {
         jMenu2.setText("Productos");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenu2.setPreferredSize(new java.awt.Dimension(150, 50));
+
+        MenuProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/producto.png"))); // NOI18N
+        MenuProductos.setText("Admin Productos");
+        MenuProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuProductosActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MenuProductos);
+
         jMenuBar1.add(jMenu2);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icons8-categorias-30.png"))); // NOI18N
@@ -163,6 +175,12 @@ public class JFrameMenu extends javax.swing.JFrame {
         contador.setVisible(true);
     }//GEN-LAST:event_MenuContadorActionPerformed
 
+    private void MenuProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuProductosActionPerformed
+        JInternalFramePoducto poducto = new JInternalFramePoducto();
+        jDesktopPane_Menu.add(poducto);
+        poducto.setVisible(true);
+    }//GEN-LAST:event_MenuProductosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -200,6 +218,7 @@ public class JFrameMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuContador;
+    private javax.swing.JMenuItem MenuProductos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
