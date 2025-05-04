@@ -3,27 +3,29 @@ package vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JDesktopPane;
+import vista.categoria.JInternalFrameCategoria;
 import vista.herramientas.JInternalFrameContador;
 import vista.producto.JInternalFramePoducto;
 
 public class JFrameMenu extends javax.swing.JFrame {
 
     public static JDesktopPane jDesktopPane_Menu;
+
     public JFrameMenu() {
         initComponents();
-        
-        this.setSize(new Dimension(1200,700));
+
+        this.setSize(new Dimension(1200, 700));
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         this.setTitle("Sistema de Venta");
         this.getContentPane().setBackground(Color.white);
-        
+
         this.setLayout(null);
         jDesktopPane_Menu = new JDesktopPane();
-        
+
         int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
         int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-        this.jDesktopPane_Menu.setBounds(0, 0, ancho, (alto-110));
+        this.jDesktopPane_Menu.setBounds(0, 0, ancho, (alto - 110));
         this.add(jDesktopPane_Menu);
     }
 
@@ -49,6 +51,7 @@ public class JFrameMenu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         MenuProductos = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        menuCategoria = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         MenuContador = new javax.swing.JMenuItem();
@@ -113,6 +116,16 @@ public class JFrameMenu extends javax.swing.JFrame {
         jMenu5.setText("Categoria");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenu5.setPreferredSize(new java.awt.Dimension(150, 50));
+
+        menuCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/configuraciones.png"))); // NOI18N
+        menuCategoria.setText("Admin Categoria");
+        menuCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCategoriaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(menuCategoria);
+
         jMenuBar1.add(jMenu5);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/icons8-herramientas-30.png"))); // NOI18N
@@ -168,8 +181,8 @@ public class JFrameMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void MenuContadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuContadorActionPerformed
-        
-       //Instanciar
+
+        //Instanciar
         JInternalFrameContador contador = new JInternalFrameContador();
         jDesktopPane_Menu.add(contador);
         contador.setVisible(true);
@@ -180,6 +193,12 @@ public class JFrameMenu extends javax.swing.JFrame {
         jDesktopPane_Menu.add(poducto);
         poducto.setVisible(true);
     }//GEN-LAST:event_MenuProductosActionPerformed
+
+    private void menuCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoriaActionPerformed
+        JInternalFrameCategoria categoria = new JInternalFrameCategoria();
+        jDesktopPane_Menu.add(categoria);
+        categoria.setVisible(true);
+    }//GEN-LAST:event_menuCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,5 +255,6 @@ public class JFrameMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem menuCategoria;
     // End of variables declaration//GEN-END:variables
 }

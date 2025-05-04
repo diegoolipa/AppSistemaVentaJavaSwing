@@ -11,7 +11,7 @@ public class ProductoControlador {
     
     //Metodos par realizar el CRUD
     
-    public ProductoControlador() throws SQLException{
+    public ProductoControlador(){
         this.connection = ConexionOracle.getConnection();
     }
     

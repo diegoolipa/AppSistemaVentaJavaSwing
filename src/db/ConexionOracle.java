@@ -8,12 +8,12 @@ import java.sql.SQLException;
 public class ConexionOracle {
    // Declaración de variables estáticas para la conexión
     private static Connection conn = null;
-    private static String login = "MATRICULA"; // Usuario de la base de datos
-    private static String clave = "matricula"; // Contraseña de la base de datos
+    private static String login = "MATRICULA2"; // Usuario de la base de datos
+    private static String clave = "MATRICULA2"; // Contraseña de la base de datos
     private static String url = "jdbc:oracle:thin:@localhost:1521:xe"; // URL de conexión a la base de datos
 
     // Método estático para obtener la conexión a la base de datos
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection(){
         try {
             // Cargar el controlador JDBC
             Class.forName("oracle.jdbc.OracleDriver");
