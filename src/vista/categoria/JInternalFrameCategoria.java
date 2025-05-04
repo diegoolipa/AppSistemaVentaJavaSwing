@@ -170,7 +170,7 @@ public class JInternalFrameCategoria extends javax.swing.JInternalFrame {
         }
 
         textNombreCategoria.setText(modeloTabla.getValueAt(fila, 1).toString());
-        textEstado.setText(modeloTabla.getValueAt(fila, 2).toString()); // Puedes adaptar si manejas otro valor de estado
+        textEstado.setText(modeloTabla.getValueAt(fila, 2).toString());
 
     }//GEN-LAST:event_btnEditarActionPerformed
 
