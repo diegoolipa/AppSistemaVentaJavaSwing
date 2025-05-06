@@ -36,6 +36,8 @@ public class JInternalFrameTipoDocumento extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(textNombreTipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 260, 50));
 

@@ -8,9 +8,9 @@ public class ProductoModelo {
     private int stock;
     private int idCategoria;
     private int idUsuarioCreador;
-    private char estado;
+    private String estado;
 
-    public ProductoModelo(int idProducto, String nombreProducto, double precio, int stock, int idCategoria, int idUsuarioCreador, char estado) {
+    public ProductoModelo(int idProducto, String nombreProducto, double precio, int stock, int idCategoria, int idUsuarioCreador, String estado) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.precio = precio;
@@ -71,11 +71,11 @@ public class ProductoModelo {
         this.idUsuarioCreador = idUsuarioCreador;
     }
 
-    public char getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(char estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
     

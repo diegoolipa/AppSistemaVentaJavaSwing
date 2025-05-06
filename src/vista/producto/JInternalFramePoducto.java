@@ -1,8 +1,13 @@
 
 package vista.producto;
 
+import controlador.ProductoControlador;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.ProductoModelo;
 
 public class JInternalFramePoducto extends javax.swing.JInternalFrame {
 
@@ -11,6 +16,8 @@ public class JInternalFramePoducto extends javax.swing.JInternalFrame {
         this.setSize(new Dimension(1000, 750));
         this.setTitle("Producto");
         this.getContentPane().setBackground(Color.BLACK);
+        
+        listarProducto();
     }
 
     /**
@@ -25,14 +32,20 @@ public class JInternalFramePoducto extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         TextNombreProducto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        btnEnviar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         TextPrecio = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         TextStock = new javax.swing.JTextField();
         ComboCategoria = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaProducto = new javax.swing.JTable();
+        btnGuardar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -46,14 +59,14 @@ public class JInternalFramePoducto extends javax.swing.JInternalFrame {
         jLabel2.setText("Nombre producto");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
-        btnEnviar.setText("ENVIAR");
-        btnEnviar.setToolTipText("");
-        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setText("EDITAR");
+        btnEditar.setToolTipText("");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnviarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, 270, 40));
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 570, 210, 40));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Precio");
@@ -72,15 +85,85 @@ public class JInternalFramePoducto extends javax.swing.JInternalFrame {
         jLabel5.setText("Stock");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
 
+        tablaProducto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tablaProducto);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 530, 410));
+
+        btnGuardar.setText("GUARDAR");
+        btnGuardar.setToolTipText("");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, 270, 40));
+
+        btnEliminar.setText("ELIMIAR");
+        btnEliminar.setToolTipText("");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 570, 210, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         System.out.println(TextNombreProducto.getText());
         System.out.println(TextPrecio.getText());
         System.out.println(TextStock.getText());
         System.out.println(ComboCategoria.getSelectedItem());
-    }//GEN-LAST:event_btnEnviarActionPerformed
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        ProductoModelo pm = new ProductoModelo();
+        pm.setNombreProducto(TextNombreProducto.getText());
+        pm.setPrecio(Double.parseDouble(TextPrecio.getText()));
+        pm.setStock(Integer.parseInt(TextStock.getText()));
+        pm.setIdCategoria(1);
+        
+        ProductoControlador pc = new ProductoControlador();
+        String mensaje = pc.CrearProducto(pm);
+        JOptionPane.showMessageDialog(this,mensaje);
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    public DefaultTableModel modeloTabla;
+    public void listarProducto(){
+        modeloTabla = new DefaultTableModel(new String[]{"ID","NOMBRE","PRECIO","STOCK","ID_CATEGORIA","CREADOR","ESTADO"},0);
+        tablaProducto.setModel(modeloTabla);
+        
+        modeloTabla.setRowCount(0);
+        ProductoControlador pc = new ProductoControlador();
+        List<ProductoModelo> lista = pc.ListarProducto();
+        for(ProductoModelo pm : lista){
+            modeloTabla.addRow(new Object[]{
+                pm.getIdCategoria(),
+                pm.getNombreProducto(),
+                pm.getPrecio(),
+                pm.getStock(),
+                pm.getIdCategoria(),
+                pm.getIdUsuarioCreador(),
+                pm.getEstado()
+            });
+        }
+    }
+    
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -88,11 +171,15 @@ public class JInternalFramePoducto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TextNombreProducto;
     private javax.swing.JTextField TextPrecio;
     private javax.swing.JTextField TextStock;
-    private javax.swing.JButton btnEnviar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaProducto;
     // End of variables declaration//GEN-END:variables
 }
