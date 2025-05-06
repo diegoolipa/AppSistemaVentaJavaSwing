@@ -6,6 +6,7 @@ import javax.swing.JDesktopPane;
 import vista.categoria.JInternalFrameCategoria;
 import vista.herramientas.JInternalFrameContador;
 import vista.producto.JInternalFramePoducto;
+import vista.tipodocumento.JInternalFrameTipoDocumento;
 
 public class JFrameMenu extends javax.swing.JFrame {
 
@@ -52,6 +53,7 @@ public class JFrameMenu extends javax.swing.JFrame {
         MenuProductos = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuCategoria = new javax.swing.JMenuItem();
+        menuTipoDocumento = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         MenuContador = new javax.swing.JMenuItem();
@@ -125,6 +127,15 @@ public class JFrameMenu extends javax.swing.JFrame {
             }
         });
         jMenu5.add(menuCategoria);
+
+        menuTipoDocumento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/usuario.png"))); // NOI18N
+        menuTipoDocumento.setText("Tipo Documento");
+        menuTipoDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTipoDocumentoActionPerformed(evt);
+            }
+        });
+        jMenu5.add(menuTipoDocumento);
 
         jMenuBar1.add(jMenu5);
 
@@ -200,6 +211,12 @@ public class JFrameMenu extends javax.swing.JFrame {
         categoria.setVisible(true);
     }//GEN-LAST:event_menuCategoriaActionPerformed
 
+    private void menuTipoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTipoDocumentoActionPerformed
+        JInternalFrameTipoDocumento tipoDocumento = new JInternalFrameTipoDocumento();
+        jDesktopPane_Menu.add(tipoDocumento);
+        tipoDocumento.setVisible(true);
+    }//GEN-LAST:event_menuTipoDocumentoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -256,5 +273,6 @@ public class JFrameMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem menuCategoria;
+    private javax.swing.JMenuItem menuTipoDocumento;
     // End of variables declaration//GEN-END:variables
 }
