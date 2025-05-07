@@ -1,4 +1,3 @@
-
 package vista.producto;
 
 import controlador.ProductoControlador;
@@ -16,7 +15,7 @@ public class JInternalFramePoducto extends javax.swing.JInternalFrame {
         this.setSize(new Dimension(1000, 750));
         this.setTitle("Producto");
         this.getContentPane().setBackground(Color.BLACK);
-        
+
         listarProducto();
     }
 
@@ -98,7 +97,7 @@ public class JInternalFramePoducto extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaProducto);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 530, 410));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 530, 410));
 
         btnGuardar.setText("GUARDAR");
         btnGuardar.setToolTipText("");
@@ -126,6 +125,16 @@ public class JInternalFramePoducto extends javax.swing.JInternalFrame {
         System.out.println(TextPrecio.getText());
         System.out.println(TextStock.getText());
         System.out.println(ComboCategoria.getSelectedItem());
+
+        int filaSeccionada = tablaProducto.getSelectedRow();
+        if (filaSeccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione una fila");
+        }
+
+        TextNombreProducto.setText(modeloTabla.getValueAt(filaSeccionada, 1).toString());
+        TextPrecio.setText(modeloTabla.getValueAt(filaSeccionada, 2).toString());
+        TextStock.setText(modeloTabla.getValueAt(filaSeccionada, 3).toString());
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -134,23 +143,37 @@ public class JInternalFramePoducto extends javax.swing.JInternalFrame {
         pm.setPrecio(Double.parseDouble(TextPrecio.getText()));
         pm.setStock(Integer.parseInt(TextStock.getText()));
         pm.setIdCategoria(1);
-        
+
         ProductoControlador pc = new ProductoControlador();
-        String mensaje = pc.CrearProducto(pm);
-        JOptionPane.showMessageDialog(this,mensaje);
+
+        String mensaje;
+        int filaSeccionada = tablaProducto.getSelectedRow();
+        if (filaSeccionada == -1) {
+            //CREAR
+            mensaje = pc.CrearProducto(pm);
+        } else {
+            //EDITAR
+            int idProducto = Integer.parseInt(modeloTabla.getValueAt(filaSeccionada, 0).toString());
+            pm.setIdProducto(idProducto);
+            mensaje = pc.EditarProducto(pm);
+        }
+
+        JOptionPane.showMessageDialog(this, mensaje);
+        listarProducto();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     public DefaultTableModel modeloTabla;
-    public void listarProducto(){
-        modeloTabla = new DefaultTableModel(new String[]{"ID","NOMBRE","PRECIO","STOCK","ID_CATEGORIA","CREADOR","ESTADO"},0);
+
+    public void listarProducto() {
+        modeloTabla = new DefaultTableModel(new String[]{"ID", "NOMBRE", "PRECIO", "STOCK", "ID_CATEGORIA", "CREADOR", "ESTADO"}, 0);
         tablaProducto.setModel(modeloTabla);
-        
+
         modeloTabla.setRowCount(0);
         ProductoControlador pc = new ProductoControlador();
         List<ProductoModelo> lista = pc.ListarProducto();
-        for(ProductoModelo pm : lista){
+        for (ProductoModelo pm : lista) {
             modeloTabla.addRow(new Object[]{
-                pm.getIdCategoria(),
+                pm.getIdProducto(),
                 pm.getNombreProducto(),
                 pm.getPrecio(),
                 pm.getStock(),
@@ -160,9 +183,23 @@ public class JInternalFramePoducto extends javax.swing.JInternalFrame {
             });
         }
     }
-    
+
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+
+        int filaSeccionada = tablaProducto.getSelectedRow();
+        if (filaSeccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione una fila");
+        }
+
+        int idProducto = Integer.parseInt(modeloTabla.getValueAt(filaSeccionada, 0).toString());
+        ProductoControlador pc = new ProductoControlador();
+        ProductoModelo pm = new ProductoModelo();
+        pm.setIdProducto(idProducto);
+
+        String mensaje = pc.EliminarProducto(pm);
+        JOptionPane.showMessageDialog(this, mensaje);
+
+        listarProducto();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
 
